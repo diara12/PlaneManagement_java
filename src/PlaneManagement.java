@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class PlaneManagement {
 
     static int[][] planeSeats = new int[4][];
-    static int[] tickets = new int[100];
+    static Ticket[] tickets = new Ticket[100]; //this array hold ticket objects
     static int ticketCount = 0;
 
     public static void initialiseRows() {
@@ -105,6 +105,29 @@ public class PlaneManagement {
         }else {
             System.out.println("Row " + row + " seat " + seat + "sold.");
         }
+
+        //Ticketing
+        System.out.println("Enter your name: ");
+        String name = input.nextLine();
+        System.out.println("Enter your surname:");
+        String surname = input.nextLine();
+        System.out.println("Enter your email: ");
+        String email = input.nextLine();
+
+        Person person = new Person(name, surname, email);
+        double price;
+        if (seat >= 1 && seat <= 5){
+            price = 200;
+        } else if (seat >= 6 && seat <= 9) {
+            price = 150;
+        }else {
+            price = 180;
+        }
+
+        Ticket ticket = new Ticket(row, seat, price, person);
+
+        tickets[ticketCount] = ticket;
+        ticketCount++;
     }
 
     public static void cancel_seat(){
